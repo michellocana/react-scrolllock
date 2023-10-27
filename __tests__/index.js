@@ -1,29 +1,31 @@
+/**
+ * @jest-environment jsdom
+ */
+import { render } from '@testing-library/react';
 import React from 'react';
-import { mount } from 'enzyme';
 
 import ScrollLock from '../src';
 
+
 describe('test', () => {
-  it('should find the lock sheet', () => {
-    const wrapper = mount(<ScrollLock />);
-    const stylesheet = document.querySelector('[data-react-scrolllock]');
+  it('should find the lock sheet',async () => {
+    const { container } = render(<ScrollLock />, { container: document.head });
+    const stylesheet = container.querySelector('[data-react-scrolllock]');
 
     expect(stylesheet).not.toBeNull();
     expect(stylesheet).not.toBeUndefined();
-
-    wrapper.unmount();
   });
+
   it('should find many lock sheets', () => {
-    const wrapper = mount(
-      <div>
+    const { container } = render(
+      <>
         <ScrollLock />
         <ScrollLock />
-      </div>,
+      </>,
+      { container: document.head }
     );
-    const stylesheets = document.querySelectorAll('[data-react-scrolllock]');
+    const stylesheets = container.querySelectorAll('[data-react-scrolllock]');
 
     expect(stylesheets).toHaveLength(2);
-
-    wrapper.unmount();
   });
 });
