@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import PropToggle from 'react-prop-toggle';
 
 import ScrollLock, { TouchScrollable } from '../../src';
@@ -149,7 +149,5 @@ class App extends Component {
   }
 }
 
-// render
-// ------------------------------
-
-render(<App />, document.getElementById('root'));
+const root = createRoot(document.getElementById('root'))
+root.render(<App />);
