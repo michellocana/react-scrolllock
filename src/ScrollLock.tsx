@@ -1,24 +1,22 @@
-// @flow
-
-import React, { PureComponent } from 'react';
 import { canUseDOM } from 'exenv';
+import { PureComponent, ReactElement } from 'react';
 
-import { TouchScrollable, type ChildrenType } from './TouchScrollable';
+import { TouchScrollable } from './TouchScrollable';
+import { pipe } from './utils';
 import withLockSheet from './withLockSheet';
 import withTouchListeners from './withTouchListeners';
-import { pipe } from './utils';
 
-type Props = {
+export type ScrollLockProps = {
   // whether or not to replace the void left by now absent scrollbars with padding
   accountForScrollbars: boolean,
   // allow touch-scroll on this element
-  children?: ChildrenType,
+  children?: ReactElement,
   // whether or not the lock is active
   isActive: boolean,
 };
 
-class ScrollLock extends PureComponent<Props> {
-  initialHeight: number;
+class ScrollLock extends PureComponent<ScrollLockProps> {
+  initialHeight: number = 0;
   componentDidMount() {
     if (!canUseDOM) return;
     this.initialHeight = window.innerHeight;
@@ -48,7 +46,7 @@ const compose = pipe(withTouchListeners, withLockSheet);
 const SheetLock = compose(ScrollLock);
 
 // toggle the lock based on `isActive` prop
-const LockToggle = (props: Props) =>
+const LockToggle = (props: ScrollLockProps) =>
   props.isActive ? <SheetLock {...props} /> : props.children;
 
 LockToggle.defaultProps = {

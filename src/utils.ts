@@ -9,14 +9,14 @@ export const listenerOptions = {
 // Touch Helpers
 // ==============================
 
-export function preventTouchMove(e) {
+export function preventTouchMove(e: TouchEvent) {
   e.preventDefault();
 
   return false;
 }
 
-export function allowTouchMove(e) {
-  const target = e.currentTarget;
+export function allowTouchMove(e: TouchEvent) {
+  const target = e.currentTarget as Element;
 
   if (target.scrollHeight > target.clientHeight) {
     e.stopPropagation();
@@ -27,7 +27,7 @@ export function allowTouchMove(e) {
   return false;
 }
 
-export function preventInertiaScroll() {
+export function preventInertiaScroll(this: HTMLElement) {
   const top = this.scrollTop;
   const totalScroll = this.scrollHeight;
   const currentScroll = top + this.offsetHeight;
@@ -50,19 +50,11 @@ export function isTouchDevice() {
 // Misc.
 // ==============================
 
-export function camelToKebab(str: string): string {
-  return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-}
-
-export function parse(val: number | string): string {
-  return isNaN(val) ? val : `${val}px`;
-}
-
 // Take a list of functions and return a function that applies the list of
 // functions from left to right
 
-const pipeFns = (a, b) => (...args) => b(a(...args));
-export const pipe = (...fns) => fns.reduce(pipeFns);
+const pipeFns = (a: Function, b: Function) => (...args: Function[]) => b(a(...args));
+export const pipe = (...fns: Function[]) => fns.reduce(pipeFns);
 
 // ==============================
 // Document Helpers
@@ -77,10 +69,12 @@ export function getPadding() {
   return paddingRight + scrollbarWidth;
 }
 
-export function getWindowHeight(multiplier = 1) {
+export function getWindowHeight(multiplier: number = 1) {
   if (canUseDOM) {
     return window.innerHeight * multiplier;
   }
+
+  return 0
 }
 
 export function getDocumentHeight() {
@@ -97,24 +91,19 @@ export function makeStyleTag() {
   if (!canUseDOM) return;
 
   let tag = document.createElement('style');
-  tag.type = 'text/css';
   tag.setAttribute('data-react-scrolllock', '');
 
   return tag;
 }
-export function injectStyles(tag, css) {
+export function injectStyles(tag: HTMLStyleElement, css: string) {
   if (!canUseDOM) return;
 
-  if (tag.styleSheet) {
-    tag.styleSheet.cssText = css;
-  } else {
-    tag.appendChild(document.createTextNode(css));
-  }
+  tag.appendChild(document.createTextNode(css));
 }
-export function insertStyleTag(tag) {
+
+export function insertStyleTag(tag: HTMLStyleElement) {
   if (!canUseDOM) return;
 
   const head = document.head || document.getElementsByTagName('head')[0];
-
   head.appendChild(tag);
 }

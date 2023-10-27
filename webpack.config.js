@@ -10,7 +10,7 @@ const faviconPlugin = new HtmlWebpackPlugin({
 });
 
 module.exports = {
-  entry: path.join(__dirname, 'examples/src/index.js'),
+  entry: path.join(__dirname, 'examples/src/index.tsx'),
   output: {
     path: path.join(__dirname, 'examples/dist'),
     filename: 'bundle.js',
@@ -18,8 +18,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        use: 'babel-loader',
+        test: /\.(ts|tsx)$/,
+        use: 'ts-loader',
         exclude: /node_modules/,
       },
       {
@@ -30,7 +30,7 @@ module.exports = {
   },
   plugins: [htmlPlugin, faviconPlugin],
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   devServer: {
     port: 3001,

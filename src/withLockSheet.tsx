@@ -1,6 +1,6 @@
-// @flow
-import React, { PureComponent, type ComponentType } from 'react';
+import { ComponentType, PureComponent } from 'react';
 
+import { ScrollLockProps } from './ScrollLock';
 import {
   getDocumentHeight,
   getPadding,
@@ -8,14 +8,15 @@ import {
   insertStyleTag,
   makeStyleTag,
 } from './utils';
-import type { Props } from './types';
 
-export default function withLockSheet(WrappedComponent: ComponentType<*>) {
-  return class SheetProvider extends PureComponent<Props> {
-    sheet: CSSStyleSheet | null;
+export default function withLockSheet(WrappedComponent: ComponentType<any>) {
+  return class SheetProvider extends PureComponent<ScrollLockProps> {
+    sheet: HTMLStyleElement | null = null;
+
     componentDidMount() {
       this.addSheet();
     }
+
     addSheet = () => {
       const styles = this.getStyles();
 
@@ -27,16 +28,18 @@ export default function withLockSheet(WrappedComponent: ComponentType<*>) {
 
       this.sheet = sheet;
     };
+
     removeSheet() {
       if (!this.sheet) return;
 
-      // $FlowFixMe
-      this.sheet.parentNode.removeChild(this.sheet);
+      this.sheet.parentNode?.removeChild(this.sheet);
       this.sheet = null;
     }
+
     componentWillUnmount() {
       this.removeSheet();
     }
+
     getStyles = () => {
       const { accountForScrollbars } = this.props;
 
@@ -52,6 +55,7 @@ export default function withLockSheet(WrappedComponent: ComponentType<*>) {
 
       return styles;
     };
+
     render() {
       return <WrappedComponent {...this.props} />;
     }

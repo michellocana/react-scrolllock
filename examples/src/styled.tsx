@@ -1,16 +1,20 @@
-/* @jsx glam */
 
-import glam from 'glam';
-import { forwardRef } from 'react';
+
+
+import { AnchorHTMLAttributes,  CSSProperties,  HTMLAttributes,  PropsWithChildren,  RefObject,  forwardRef } from 'react';
 
 const gutter = 15;
 
 // styled components
 // ------------------------------
 
-export const Container = ({ height, ...props }) => (
+type ContainerProps = PropsWithChildren<{
+  height: number
+}>
+
+export const Container = ({ height, ...props }: ContainerProps) => (
   <div
-    css={{
+    style={{
       alignItems: 'center',
       display: 'flex ',
       flexDirection: 'column',
@@ -25,21 +29,22 @@ export const Container = ({ height, ...props }) => (
     {...props}
   />
 );
-export const Anchor = ({ isLocked, ...props }) => (
-  <a css={{ color: isLocked ? '#FF5630' : '#36B37E' }} {...props} />
+
+type AnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> & PropsWithChildren<{
+  isLocked: boolean
+}>
+
+export const Anchor = ({isLocked, ...props}: AnchorProps) => (
+  <a style={{ color: isLocked ? '#FF5630' : '#36B37E' }} {...props} />
 );
-export const Repo = ({ isLocked, ...props }) => (
+
+export const Repo = (props: AnchorHTMLAttributes<HTMLAnchorElement>) => (
   <a
     target="_blank"
-    css={{
+    style={{
       paddingBottom: 1,
       borderBottom: '1px solid rgba(0, 0, 0, 0.3)',
       textDecoration: 'none',
-
-      ':hover': {
-        borderBottomColor: 'rgba(0, 0, 0, 0.6)',
-        textDecoration: 'none',
-      },
     }}
     {...props}
   />
@@ -51,13 +56,15 @@ export const Repo = ({ isLocked, ...props }) => (
   ==============================
 */
 
-export const Header = props => (
-  <header css={{ marginBottom: '2em' }} {...props} />
+export const Header = (props: HTMLAttributes<HTMLElement>) => (
+  <header style={{ marginBottom: '2em' }} {...props} />
 );
-export const Footer = props => <footer css={{ marginTop: '2em' }} {...props} />;
-export const Icon = props => (
+
+export const Footer = (props: HTMLAttributes<HTMLElement>) => <footer style={{ marginTop: '2em' }} {...props} />;
+
+export const Icon = (props: HTMLAttributes<HTMLElement>) => (
   <div
-    css={{
+    style={{
       fontSize: 64,
       height: 64,
       lineHeight: 1,
@@ -68,10 +75,17 @@ export const Icon = props => (
     {...props}
   />
 );
-export const ScrollArea = forwardRef(({ height, innerRef, ...props }, ref) => (
+
+
+type ScrollAreaProps = PropsWithChildren<{
+  height: number
+  innerRef: RefObject<HTMLDivElement>
+}>
+
+export const ScrollArea = forwardRef<HTMLDivElement, ScrollAreaProps>(({ height, innerRef, ...props }, ref) => (
   <div
     ref={ref || innerRef}
-    css={{
+    style={{
       backgroundColor: 'rgba(255, 255, 255, 0.5)',
       boxSizing: 'border-box',
       color: '#091e42',
@@ -86,17 +100,14 @@ export const ScrollArea = forwardRef(({ height, innerRef, ...props }, ref) => (
       paddingLeft: 20,
       paddingRight: 20,
       WebkitOverflowScrolling: 'touch',
-
-      '@media (max-width: 420px)': {
-        display: 'block',
-      },
     }}
     {...props}
   />
 ));
-export const Title = props => (
+
+export const Title = (props: HTMLAttributes<HTMLElement>) => (
   <h1
-    css={{
+    style={{
       display: 'inline',
       fontSize: 18,
       fontWeight: 500,
@@ -106,9 +117,10 @@ export const Title = props => (
     {...props}
   />
 );
-export const Code = props => (
+
+export const Code = (props: HTMLAttributes<HTMLElement>) => (
   <code
-    css={{
+    style={{
       backgroundColor: 'rgba(0, 0, 0, 0.09)',
       borderRadius: '3px',
       color: '#091e42',
@@ -122,10 +134,10 @@ export const Code = props => (
   />
 );
 
-export const Button = props => (
+export const Button = (props: HTMLAttributes<HTMLElement>) => (
   <button
     type="button"
-    css={{
+    style={{
       alignItems: 'center',
       background: 'linear-gradient(to bottom, white, #fafbfc)',
       backgroundColor: 'white',
@@ -143,22 +155,18 @@ export const Button = props => (
       position: 'relative',
       touchAction: 'manipulation',
       width: '100%',
-
-      ':hover': {
-        boxShadow:
-          '0 2px 5px rgba(0, 0, 0, 0.25), 0 1px 1px rgba(0, 0, 0, 0.1)',
-        transform: 'scale(1.01)',
-      },
-      ':active': {
-        boxShadow: '0 1px 4px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.1)',
-        transform: 'scale(0.99)',
-      },
     }}
     {...props}
   />
 );
 
-export const ChevronDown = ({ fg = 'white', bg = 'inherit', style }) => (
+type ChevronDownProps = {
+  fg?: string,
+  bg?: string,
+  style: CSSProperties,
+}
+
+export const ChevronDown = ({ fg = 'white', bg = 'inherit', style }: ChevronDownProps) => (
   <svg
     width="24px"
     height="24px"

@@ -1,15 +1,12 @@
-// @flow
-import React, { PureComponent, type ComponentType } from 'react';
 import { canUseDOM } from 'exenv';
+import { PureComponent, type ComponentType } from 'react';
 
 import { isTouchDevice, listenerOptions, preventTouchMove } from './utils';
 
-type Props = {};
-
 // Mobile Safari ignores { overflow: hidden } declaration on the body,
 // so we have to prevent touchmove events via JS
-export default function withTouchListeners(WrappedComponent: ComponentType<*>) {
-    return class TouchProvider extends PureComponent<Props> {
+export default function withTouchListeners(WrappedComponent: ComponentType<any>) {
+    return class TouchProvider extends PureComponent<{}> {
         componentDidMount() {
             if (!canUseDOM || !isTouchDevice()) return;
 
