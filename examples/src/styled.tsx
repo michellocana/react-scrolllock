@@ -1,11 +1,4 @@
-import React, {
-  AnchorHTMLAttributes,
-  CSSProperties,
-  HTMLAttributes,
-  PropsWithChildren,
-  RefObject,
-  forwardRef,
-} from 'react'
+import { AnchorHTMLAttributes, CSSProperties, HTMLAttributes, PropsWithChildren, RefObject, forwardRef } from 'react'
 
 const gutter = 15
 

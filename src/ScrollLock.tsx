@@ -15,7 +15,7 @@ export type ScrollLockProps = {
   isActive: boolean
 }
 
-class ScrollLock extends PureComponent<ScrollLockProps> {
+class ScrollLockComponent extends PureComponent<ScrollLockProps> {
   initialHeight: number = 0
   componentDidMount() {
     if (!canUseDOM) return
@@ -27,7 +27,7 @@ class ScrollLock extends PureComponent<ScrollLockProps> {
     // adjust scroll if the window has been resized since the lock was engaged
     // e.g. mobile safari dynamic chrome heights
     if (offset) {
-      window.scrollTo(0, window.pageYOffset + offset)
+      window.scrollTo(0, window.scrollY + offset)
     }
 
     // reset the initial height in case this scroll lock is used again
@@ -43,15 +43,15 @@ class ScrollLock extends PureComponent<ScrollLockProps> {
 
 // attach the stylesheet and inject styles on [un]mount
 const compose = pipe(withTouchListeners, withLockSheet)
-const SheetLock = compose(ScrollLock)
+const SheetLock = compose(ScrollLockComponent)
 
 // toggle the lock based on `isActive` prop
-const LockToggle = (props: ScrollLockProps) => (props.isActive ? <SheetLock {...props} /> : props.children)
+const ScrollLock = (props: ScrollLockProps) => (props.isActive ? <SheetLock {...props} /> : props.children)
 
-LockToggle.defaultProps = {
+ScrollLock.defaultProps = {
   accountForScrollbars: true,
   children: null,
   isActive: true,
 }
 
-export default LockToggle
+export default ScrollLock

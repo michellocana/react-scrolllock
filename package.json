@@ -2,14 +2,14 @@
   "name": "@michellocana/react-scrolllock",
   "description": "Prevent scroll on the body when component is mounted.",
   "version": "0.0.1",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "lib/react-scrolllock.js",
+  "types": "lib/index.d.ts",
   "license": "MIT",
   "scripts": {
     "test": "jest",
     "lint": "eslint .",
     "start": "webpack-dev-server --mode development",
-    "build": "tsc",
+    "build": "rollup --config rollup.config.js",
     "prepublishOnly": "npm run build",
     "build:examples": "webpack --mode production",
     "deploy:examples": "gh-pages -d examples/dist",
@@ -35,15 +35,20 @@
     "disable-scroll"
   ],
   "dependencies": {
-    "exenv": "^1.2.2",
-    "typescript": "^5.2.2"
+    "@babel/plugin-transform-runtime": "^7.23.2",
+    "exenv": "^1.2.2"
   },
   "peerDependencies": {
     "react": ">=16"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.23.2",
+    "@babel/preset-react": "^7.22.15",
+    "@babel/preset-typescript": "^7.23.2",
     "@changesets/cli": "^2.6.1",
     "@michellocana/prettier-config": "^1.0.1",
+    "@rollup/plugin-babel": "6.0.3",
+    "@rollup/plugin-node-resolve": "15.0.1",
     "@testing-library/react": "^14.0.0",
     "@types/exenv": "^1.2.1",
     "@types/react": "^18.2.33",
@@ -60,8 +65,12 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-prop-toggle": "^1.0.2",
+    "rollup": "2.79.1",
+    "rollup-plugin-clear": "2.0.7",
+    "rollup-plugin-dts": "5.1.1",
     "style-loader": "^0.21.0",
     "ts-loader": "8.4.0",
+    "typescript": "^5.2.2",
     "webpack": "4.43.0",
     "webpack-cli": "4.10.0",
     "webpack-dev-server": "4.11.1"

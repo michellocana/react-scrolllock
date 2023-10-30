@@ -1,7 +1,6 @@
 {
   // see https://www.typescriptlang.org/tsconfig to better understand tsconfigs
   "compilerOptions": {
-    "module": "ES2020",
     "lib": ["dom", "ES2020"],
     "target": "ES6",
     "importHelpers": true,
@@ -26,8 +25,6 @@
     // error out if import and file system have a casing mismatch. Recommended by TS
     "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
-    "resolveJsonModule": true,
-    "declaration": true,
-    "outDir": "dist"
+    "resolveJsonModule": true
   }
 }

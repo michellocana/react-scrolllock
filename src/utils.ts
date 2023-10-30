@@ -53,10 +53,7 @@ export function isTouchDevice() {
 // Take a list of functions and return a function that applies the list of
 // functions from left to right
 
-const pipeFns =
-  (a: Function, b: Function) =>
-  (...args: Function[]) =>
-    b(a(...args))
+const pipeFns = (a: Function, b: Function) => (...args: Function[]) => b(a(...args))
 export const pipe = (...fns: Function[]) => fns.reduce(pipeFns)
 
 // ==============================
