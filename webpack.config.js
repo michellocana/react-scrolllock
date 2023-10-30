@@ -1,13 +1,13 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const htmlPlugin = new HtmlWebpackPlugin({
   template: path.join(__dirname, 'examples/src/index.html'),
   filename: './index.html',
-});
+})
 const faviconPlugin = new HtmlWebpackPlugin({
   favicon: 'examples/src/favicon.ico',
-});
+})
 
 module.exports = {
   entry: path.join(__dirname, 'examples/src/index.tsx'),
@@ -35,4 +35,4 @@ module.exports = {
   devServer: {
     port: 3001,
   },
-};
+}

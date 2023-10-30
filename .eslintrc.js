@@ -38,4 +38,4 @@ module.exports = {
     semi: 2,
     strict: 0,
   },
-};
+}

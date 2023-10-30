@@ -1,7 +1,6 @@
-
 # React Scroll Lock
 
-*🚨 Not Maintained*
+_🚨 Not Maintained_
 [![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
 This project is a fork of [react-scrolllock](https://www.npmjs.com/package/react-scrolllock), which is now unmantained. This version keeps all of the original code, but updates the `react` and `react-dom` peer dependencies and moves from Flow to TypeScript.
@@ -17,20 +16,19 @@ yarn add react-scrolllock
 ## Usage
 
 ```js
-import ScrollLock, { TouchScrollable } from 'react-scrolllock';
+import ScrollLock, { TouchScrollable } from 'react-scrolllock'
 
 class Modal extends Component {
-  state = { lockScroll: false };
+  state = { lockScroll: false }
   render() {
     return (
       <div>
-        ... // the lock accepts a single child element, which supports
-        touch-scrolling.
+        ... // the lock accepts a single child element, which supports touch-scrolling.
         <ScrollLock>
           <ElementWithScrollableContent>...</ElementWithScrollableContent>
         </ScrollLock>
-        // if your app structure doesn't allow wrapping like above, the
-        `TouchScrollable` // component is exposed as a named export.
+        // if your app structure doesn't allow wrapping like above, the `TouchScrollable` // component is exposed as a
+        named export.
         <ScrollLock />
         <TouchScrollable>
           <ElementWithScrollableContent>...</ElementWithScrollableContent>
@@ -38,7 +36,7 @@ class Modal extends Component {
         // you can also toggle the lock based on some state.
         <ScrollLock isActive={this.state.lockScroll} />
       </div>
-    );
+    )
   }
 }
 ```

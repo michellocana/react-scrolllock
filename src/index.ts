@@ -1,2 +1,2 @@
-export { default } from './ScrollLock';
-export { TouchScrollable } from './TouchScrollable';
+export { default } from './ScrollLock'
+export { TouchScrollable } from './TouchScrollable'
