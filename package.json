@@ -16,6 +16,9 @@
     "publish:examples": "npm run build:examples && npm run deploy:examples",
     "format": "prettier . --write"
   },
+  "files": [
+    "lib"
+  ],
   "jest": {
     "testEnvironment": "jsdom"
   },
