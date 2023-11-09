@@ -3,7 +3,7 @@
 _🚨 Not Maintained_
 [![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
-This project is a fork of [react-scrolllock](https://www.npmjs.com/package/react-scrolllock), which is now unmantained. This version keeps all of the original code, but updates the `react` and `react-dom` peer dependencies and moves from Flow to TypeScript.
+This project is a fork of [react-scrolllock](https://www.npmjs.com/package/react-scrolllock), which is now unmantained. This version keeps almost all of the original code, but updates the `react` and `react-dom` peer dependencies and moves from Flow to TypeScript.
 
 Prevent scroll on the `<body />` when a component is mounted.
 
@@ -16,7 +16,7 @@ yarn add react-scrolllock
 ## Usage
 
 ```js
-import ScrollLock, { TouchScrollable } from 'react-scrolllock'
+import { ScrollLock, TouchScrollable } from 'react-scrolllock'
 
 class Modal extends Component {
   state = { lockScroll: false }

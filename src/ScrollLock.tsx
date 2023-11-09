@@ -46,12 +46,10 @@ const compose = pipe(withTouchListeners, withLockSheet)
 const SheetLock = compose(ScrollLockComponent)
 
 // toggle the lock based on `isActive` prop
-const ScrollLock = (props: ScrollLockProps) => (props.isActive ? <SheetLock {...props} /> : props.children)
+export const ScrollLock = (props: ScrollLockProps) => (props.isActive ? <SheetLock {...props} /> : props.children)
 
 ScrollLock.defaultProps = {
   accountForScrollbars: true,
   children: null,
   isActive: true,
 }
-
-export default ScrollLock

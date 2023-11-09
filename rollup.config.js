@@ -25,7 +25,7 @@ module.exports = () => {
         format: 'cjs',
         sourcemap: true,
         esModule: false,
-        exports: 'named',
+        exports: 'auto',
       },
       external: isExternalModule,
       plugins: [
